@@ -1,6 +1,7 @@
 \section{Methods}
 \label{sec:methods}
 
+%% Simulation workflow
 \subsection{Simulation workflow}
 The simulations discussed in this work are based on the Y, framework designed to realistically replicate a social media platform with virtual agents. 
 
@@ -10,11 +11,9 @@ The system is highly configurable, as it allows to specify parameters such as ho
 In addition to the existing simulator, at the end of each day an additional phase enables agents to update their opinions on the discussed topics.
 
 
-
+%% Agents
 \subsection{Agents}
-% evidenziare misinfo aggiunto dopo (non chiaro in workflow)
 
-% Intro
 One of the biggest challenges in social simulations is to realistically model agents and their behavior. 
 This section describes how agents are initialized and modeled, and introduces a new category of agents diffusing misinformation.
 
@@ -39,9 +38,22 @@ The topic descriptions ensure that the agents have the necessary background know
 
 % Behavior
 \subsubsection{Agent's behavior}
+When an agent is active, it performs one of the following actions: post a tweet, comment on an existing conversation, or just read a tweet.
+The action is selected based on two activity values (in $[0,1]$) that define how likely the agent it to post or comment.
+If their sum is less then 1, the remaining probability is automatically assigned to the read action.
+This setup helps model user behavior more realistically, using values based on real data.
+
+If the agents writes a post, the topic is randomly picked from the user's interests, among those active in the configured time window.
+When the agent comments or reads a post, it can also decide to add a reaction (\textit{like} or \textit{dislike}) and to follow or unfollow the author.
+These additional behaviors contribute to shaping the network over time.
+
+To decide which content the agent interacts with, a recommendation system selects the posts to show. Two algorithms are used: \textit{ReverseChronoFollowersPopularity}, that recommends popular recent content mainly from followed users, and \textit{ContentRecSys}, selecting random posts.
+For suggesting users to follow, the system \textit{PreferentialAttachment} default algorithm is used, which ranks users according to the product of the agent’s neighbor set size and that of the candidate user.
+
 
 % Misinfo
 \subsubsection{Misinformation Agents}
 
 
+%% Opinion
 \subsection{Opinion modeling and update}
