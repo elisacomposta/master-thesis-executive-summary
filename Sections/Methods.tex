@@ -53,7 +53,43 @@ For suggesting users to follow, the system \textit{PreferentialAttachment} defau
 
 % Misinfo
 \subsubsection{Misinformation Agents}
+This work introduces a new type of agent designed to generate misleading content.
+There are designed like normal users, with demographics and personality traits, but their prompts for posting and commenting explicitly ask them to generate persuasive misleading content that supports their views.
+They are not bots nor belong to a coordinated network, and have no harmful intent, so they are treated as misinformators rather than disinformators.
+
+Unlike other agents, they are not initialized using real user data.
+Their political leaning is assigned ensuring a uniform distribution across coalitions.
+Toxicity and activity levels are also generated differently: they are generated using statistical distributions fitted on the dataset used in this study.
+For toxicity the best-fitting distribution is identified for each coalition.
+For activity, the number of posts and comments is modeled using discrete distributions, then converted into normalized scores, similarly to the other agents in the simulation.
 
 
 %% Opinion
 \subsection{Opinion modeling and update}
+To better represent individual behavior, this work adds an explicit opinion model, not present in the original framework.
+Each agent's view is defined by a numerical score from -1 (strongly opposed) to +1 (strongly supported), along with a textual explanation. 
+The initial opinion of agents corresponds to those of their supported political coalition, and it can evolve during the simulation.
+Two types od models are used for this: mathematical models and an LLM-based approach.
+
+\subsubsection{Mathematical modeling}
+Among the models implemented, some simple aggregations like median and or weighted mean are implemented, and can be used to summarize externally assigned scores.
+A well-known model here included is the Friedkin-Johnsen, which combines the agent's initial opinion with those of its neighbors.
+Specifically, the model used throughout the simulation is a state-dependent version of the previous model that considers the influence of the current opinion rather than the initial one \cite{Ye2018Opinion}:
+\[
+x_i(t + 1) = (1 - \lambda_i) x_i(t) + \lambda_i  \sum_{j \in N_i(t)} w_{ij} x_j (t)
+\]
+where $x_i(t)$ is the opinion of individual $i$ at time $t$, $N_i$ is the set of following users, $\lambda_i$ is the user's susceptibility to other users, and $w_{ij}$ is the impact user $j$ has on $i$. 
+Susceptibility is computed from personality traits, and the neighbors are weighted according to the type of interactions they had (\textit{like}, \textit{dislike}, \textit{follow}). 
+
+These scores are only used for analysis, as all actions in the simulations are entirely driven by LLM-based agents.
+
+
+\subsubsection{LLM-based opinion update}
+In the LLM-based opinion model, agents are initialized with the opinions of their supported coalition, and are asked to update their views periodically. During the simulation they act coherently with their views. 
+
+In the update phase, the agent receives its own profile, the topics to update, its current opinions and the beliefs of its coalition, and a memory of recent interactions, including the content read/written, reactions, follow changes.
+Based on this, the LLM outputs both a textual explanation and a stance label, later mapped to a numerical score.
+
+A confirmation bias is introduced in the prompt, to simulate resistance to change and opinion fragmentation. 
+Misinformation agents are assigned a stronger bias, to reflect their stronger attachment to their beliefs.
+
