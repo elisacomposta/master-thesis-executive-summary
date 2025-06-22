@@ -2,5 +2,46 @@
 \label{sec:methods}
 
 \subsection{Simulation workflow}
+The simulations discussed in this work are based on the Y, framework designed to realistically replicate a social media platform with virtual agents. 
+
+Each simulated day consists of multiple rounds during which a sample of active agents performs actions such as posting and interacting.
+Agents start without predefined social connections, allowing the network structure to emerge and evolve over time based on their interactions. 
+The system is highly configurable, as it allows to specify parameters such as hourly activity, recommendation algorithms, and agents’ misinformation levels.
+In addition to the existing simulator, at the end of each day an additional phase enables agents to update their opinions on the discussed topics.
+
+
+
 \subsection{Agents}
+% evidenziare misinfo aggiunto dopo (non chiaro in workflow)
+
+% Intro
+One of the biggest challenges in social simulations is to realistically model agents and their behavior. 
+This section describes how agents are initialized and modeled, and introduces a new category of agents diffusing misinformation.
+
+% Init
+\subsubsection{Initialization}
+When creating the population, each agent receives a detailed profile build from a mix of randomly generated features, real-world data, and data sampled from real-world distributions.
+
+Some profile dimensions are randomly sampled: name, surname, email, password and personality.
+Personality follows the Big Five model, allowing up to 32 combinations of distinct personalities.
+Age and gender are assigned using weighted probabilities based on 2024 Twitter statistics in Italy, restricted to users aged 18-60.
+
+All agents are set with Italian nationality and share four main interests, corresponding to the political topics analyzed in this study: \textit{Civil rights}, \textit{Immigration}, \textit{Nuclear energy}, \textit{Reddito di Cittadinanza}.
+
+To make the users even more realistic and context-aware, some attributes are initialized using real-world data, from a Twitter dataset collected around the 2022 Italian political elections \cite{pierri2023ita}.
+This includes the users' political leaning, writing toxicity and activity level.
+The activity is normalized in the range $[0,1]$ using a logarithmic transformation to reduce the effect of outliers.
+
+Agents are orchestrated using AutoGen, which enables multi-agent conversations.
+Before performing any action, the agents receive a role prompt, specifying its profile, the personal opinions, the supported coalition and their views, and a description of the topics.
+The topic descriptions ensure that the agents have the necessary background knowledge on the considered context, and specify the meaning of the stances for each topic.
+
+
+% Behavior
+\subsubsection{Agent's behavior}
+
+% Misinfo
+\subsubsection{Misinformation Agents}
+
+
 \subsection{Opinion modeling and update}
