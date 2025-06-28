@@ -26,7 +26,7 @@ The analysis is structured on multiple levels to provide a overview of the behav
 % Activity per user type + network structure
 The comparison of interaction activity by user type, in Figure \ref{fig:interactions_count}, shows that misinformation agents are more active in content generation, as they post and comment more than base users. However, they engage less in building connections, as \textit{follows} are significantly lower.
 \textit{Likes} are used similarly by the two groups, while base users are more active in expressing disagreement through \textit{dislikes}.
-Thanks to the \textit{follow} action, users form connections across coalitions and between different agent types, allowing a structured network to emerge. The \textit{unfollow} action, instead, is almost absent, suggesting that longer simulations may be needed to see a observe the evolution of of connections over time.
+Thanks to the \textit{follow} action, users form connections across coalitions and between different agent types, allowing a structured network to emerge. The \textit{unfollow} action, instead, is almost absent, suggesting that longer simulations may be needed to see a observe the evolution of the connections over time.
 
 \begin{figure}[h]
     \centering
@@ -46,7 +46,7 @@ For M5S, this may be due to its smaller size in the simulated populations, which
 The Right, even though it's one of the largest group, still shows a strong preference for out-group positive interactions.
 
 Negative interactions are mostly directed toward other coalitions, and the Right stands out for the higher rate of in-group negative interactions.
-This might indicate that the Right may have a greater level of internal fragmentation, with more conflict even among users with the same political views.
+This might indicate that the Right may have a greater level of internal fragmentation, with more conflict among users, even if sharing the same political views.
 
 
 \begin{figure}[h]
@@ -76,7 +76,7 @@ Moreover, across all topics, there's a gradual convergence toward neutral values
 
 % Misinformation
 \subsection{Misinformation}
-To evaluate the impact of misinformation, we considered opinion shift, which is the difference between each user’s final opinion and their initial opinion.
+To evaluate the impact of misinformation, we considered opinion shift, which is the difference between each user’s final and initial opinion.
 Results in Figure \ref{fig:misinfo_opinion_shift} show that increasing the amount of misinformation in the system doesn’t significantly affect how agents update their views.
 Even in the extreme scenario with 50\% of agents producing misleading content, opinion shifts remains similar to those in setups with lower misinformation.
 
@@ -98,7 +98,7 @@ Adding these factors could improve future simulations.
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\linewidth]{Images/Misinformation/score_llm_RandomRecSys_small.png}
-    \caption{Distribution of opinion shift (difference between final and initial opinion) for each topic an coalition, with varying levels of misinformation.}
+    \caption{Distribution of opinion shift for each topic an coalition, with varying levels of misinformation.}
     \label{fig:misinfo_opinion_shift}
 \end{figure}
 
@@ -107,9 +107,8 @@ Adding these factors could improve future simulations.
 \subsection{Toxicity analysis}
 
 % Toward in-group and out-group 
-To evaluate how agents express toxicity toward different groups, we compute the delta of the toxicity of their comments directed to out-group and in-group users.
-Figure \ref{fig:toxicity_in_out} shows the distributions, on a logarithmic scale.
-Both real and simulated data are centered around zero, indicating that agents don't have a specific preference in toxicity direction.
+To evaluate how agents express toxicity toward different groups, we compute the delta of the logarithms of the toxicity of comments directed to out-group and in-group users.
+Figure \ref{fig:toxicity_in_out} shows that both real and simulated data are centered around zero, indicating that agents don't have a specific preference in toxicity direction.
 
 However, the real data have a wider distribution, indicating that real users show greater variability in the toxicity toward the two groups.
 This suggests that the simulations fail to reproduce the diversity of behavior of real world  in how toxicity is distributed.
@@ -126,13 +125,13 @@ This suggests that the simulations fail to reproduce the diversity of behavior o
 
 % Across coalitions and content types
 \medskip
-Figure \ref{fig:toxicity_box} investigates on how toxicity varies across political coalition and content types.
+Figure \ref{fig:toxicity_box} investigates how toxicity varies across political coalition and content types.
 
-In general, posts tend to be more toxic on average than comments, except for the right coalition, which may indicate a more conflictual style in replying.
+In general, posts tend to be more toxic than comments, except for the Right coalition, which may indicate a more conflictual style in replying.
 M5S has the highest average toxicity in posts, whereas Centre-Left and Third Pole maintain a more moderate and stable tone in both types of contents.
 
-Despite the low average values, all distributions have positive skew, suggesting that LLMs can produce highly toxic content, even though at lower frequency.
-This behavior, maybe facilitated by the use of an uncensored model, contributes to a more realistic simulation of online conversations.
+Despite the low average values, all distributions have a positive skew, suggesting that LLMs can produce highly toxic content, even though at lower frequency.
+This behavior, possibly facilitated by the use of an uncensored model, contributes to a more realistic simulation of online conversations.
 
 
 \begin{figure}[h]

@@ -1,35 +1,29 @@
 \section{Related work}
 \label{sec:relatedwork}
 
-This section outlines prior work on social network simulations, misinformation diffusion, and opinion dynamics, and highlights how LLM agents enable more realistic simulations compared to traditional models.
 
-\subsection{Simulating social networks}
 % ABMs, limitation, LLMs
-Agent-Based Modeling (ABM) is widely used to simulate complex social phenomena, starting from simple interactions between agents.
+Many studies have explored the simulation of social dynamics through Agent-Based Modeling (ABM), a widely used approach where complex collective behavior emerges from simple interactions among individuals.
 While traditional ABMs are limited by the simplicity of the behavioral rules, recent advancements in Large-Language-Models (LLMs) allow the creation of agents with more realistic and coherent behavior.
 
 % Other studies
-Several studies have explored the use of LLMs in simulated social environments.
-A comparison of three platforms with different recommendation algorithms  shows that promoting the interaction between opposing views results in lower toxicity \cite{törnberg2023evaluate}.
-In the $S^3$ simulator \cite{gao2023s3socialnetworksimulationlarge}, agents are equipped with a memory pool, enabling them to to maintain coherence and reproduce realistic dynamics, such as the evolution of emotion and attitudes.
-Finally, Y \cite{rossetti2024ysocialllmpoweredsocial} is presented as a digital twin of a social media platform, where LLM-based agents can post, reply, react and follow other users, supporting controlled experimentation of online behavior.
+Simulations based on LLMs have been used to test different recommendation algorithms, showing for example that promoting the interaction between opposing views can reduce toxicity \cite{törnberg2023evaluate}.
+%Some frameworks introduce a memory mechanism \cite{gao2023s3socialnetworksimulationlarge}, enabling agents to to maintain coherence and reproduce realistic attitudinal dynamics.
+\textit{Y} \cite{rossetti2024ysocialllmpoweredsocial} is another example of simulation framework, designed as a digital twin of a social media platform, where LLM-based agents can post, reply, react and follow other users, supporting controlled experimentation of online behavior.
 
-
-
-\subsection{LLM agents and misinformation}
-Rumor dissemination has long existed, even through traditional media, but the raise of online social networks has dramatically increased the speed and scale at which fake news can spread.
-Traditional ABMs tried to replicate this phenomenon, but they lacked the complexity of human interactions.
-
-The use of LLM agents enables the simulation of more realistic dynamics, thanks to their ability to generate realistic and persuasive content, even in the context of disinformation.
+% LLM agents and misinformation
+\medskip
+Rumor dissemination has long existed, even through traditional media, but the raise of online social networks has dramatically increased the speed and scale at which fake news can spread, making it an interesting phenomenon for simulation-based studies.
+Traditional ABMs tried to replicate it, but they lacked the complexity of human interactions.
+The use of LLM agents, instead, enables the simulation of more realistic dynamics, thanks to their ability to generate realistic and persuasive content, even in the context of disinformation.
 Some studies show that both agents' personalities and the underlying network structure influence the disinformation propagation, while other frameworks assign specific roles (e.g., \textit{spreaders}, \textit{verifiers}) to better analyze agent behavior \cite{liu2024tinyslipgiantleap}.
 
-
-
-\subsection{Opinion Dynamics}
-One of the major challenges in simulating social behavior is modeling opinion evolution over time.
+% Opinion Dynamics
+\medskip
+Another key challenge in social simulations is opinion modeling.
 Traditional mathematical models, such as DeGroot or Friedkin-Johnsen, formalize social influence, but simplify the complexity of human communication and interaction.
 
-To overcome these limitations, recent studies introduced LLM agents in simulations, leveraging their ability to interact through natural language and to reflect contextual, emotional, and personal traits \cite{piao2025emergencehumanlikepolarizationlarge}. 
+To overcome these limitations, recent opinion dynamics studies introduced LLM agents, leveraging their ability to role-play and interact through natural language \cite{chuang2024simulatingopiniondynamicsnetworks}. 
 
 This makes them particularly suitable for modeling opinion change in settings where language and social interaction are crucial.
 
